@@ -107,6 +107,12 @@
             <img src="images/play.svg" class="icon">
             <span class="nav-label">Play  Sample 2</span>
             </li>
+           <!--  <form>
+            <li class="saveText button-row nav-inverse-color">
+            <input type="submit" name="save" value="saveText"/>
+            <span class="nav-label">Save Text</span>
+            </form>
+            </li> -->
           </ul>
 
           </nav>
@@ -145,8 +151,11 @@
                       <div class="col-lg-12">
                         <div class="tab-content">
                           <div role="tabpanel" class="tab-pane active" id="home2">
-                            <textarea readonly id="resultsText"></textarea>
-                          </div>
+                            <!-- <form method="post" action="/" >
+                              <textarea name="results" readonly id="resultsText"></textarea>
+                              <input type="submit">
+                            </form>
+ -->                          </div>
                           <div role="tabpanel" class="tab-pane" id="profile2">
                             <textarea readonly id="resultsJSON"></textarea>
                           </div>
@@ -207,6 +216,11 @@
 
           </div><!-- /.col -->
         </div><!-- /.row -->
+
+          <form method="post" action="/" >
+              <textarea name="results" readonly id="resultsText"></textarea>
+              <input type="submit">
+          </form>
 
       </div><!-- /.container -->
 

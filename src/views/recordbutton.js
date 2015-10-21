@@ -63,6 +63,7 @@ exports.initRecordButton = function(ctx) {
           }
         });
       } else {
+
         console.log('Stopping microphone, sending stop action message');
         recordButton.removeAttr('style');
         recordButton.find('img').attr('src', 'images/microphone.svg');

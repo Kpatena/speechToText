@@ -21,6 +21,7 @@ var express      = require('express'),
     vcapServices = require('vcap_services'),
     extend       = require('util')._extend,
     watson       = require('watson-developer-cloud');
+  
 
 // Bootstrap application settings
 require('./config/express')(app);
