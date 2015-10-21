@@ -173,3 +173,33 @@ ol ol li:last-child {margin-bottom:0;}
 .service-icon {
   width: 100%;
 }
+
+#wrapper{
+  width: 100%;
+  overflow: hidden;
+}
+#wrapper img{
+  width: 100%;
+}
+
+#first{
+  float: left;
+  width: 20%;
+  height: 30%;
+}
+#second{
+  float: left;
+  width: 20%;
+}
+#third{
+  float: left;
+  width: 20%;
+}
+#fourth{
+  float: left;
+  width: 20%;
+}
+#fifth{
+  float: left;
+  width: 20%;
+}

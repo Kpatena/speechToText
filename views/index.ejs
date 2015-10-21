@@ -14,12 +14,12 @@
     <div class="navbar-wrapper">
 
     <!-- Service Description Bar -->
-
+    <!--
     <div class="header">
       <div class="container">
         <div class="col-lg-2 col-md-2 hidden-xs hidden-sm">
           <img src="images/stt.svg" class="service-icon">
-        </div><!-- .col-lg-2 -->
+        </div><!-- .col-lg-2 --
 
         <div class="col-lg-10 col-md-10 col-xs-12">
           <h1>Speech to Text</h1>
@@ -30,21 +30,21 @@
             <a href="/editor">edit text</a>
             <a href="https://github.com/watson-developer-cloud/speech-to-text-nodejs">Fork on Github</a>
             <a href="https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/speech-to-text-nodejs">Fork and Deploy on Github</a>
-          </div><!-- .resources -->
+          </div><!-- .resources --
           </p>
-        </div><!-- .col-lg-10 -->
-      </div><!-- .container -->
-    </div><!-- .header -->
-    <!-- Step 1 Section-->
+        </div><!-- .col-lg-10 --
+      </div><!-- .container --
+    </div><!-- .header --
+    <!-- Step 1 Section--
     <div class="container">
-      <!-- Step 3 Section-->
-      <!-- First column of inputs -->
+      <!-- Step 3 Section--
+      <!-- First column of inputs --
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
           <h2>Transcribe Audio</h2>
           <div class="col-lg-8 col-md-12 col-sm-12">
             <p class="help-block" style="padding-right: 3em;">Use your microphone (compatible only with <a href="https://www.google.com/intl/en/chrome/browser/desktop/">Google Chrome</a> and <a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>), upload pre-recorded audio (WAV containing uncompressed audio or FLAC file formats), drag and drop recorded audio onto the page, or use the audio samples provided. The returned text includes metadata that provides the timestamps for start and end times of individual words, confidence scores behind those words, and alternative hypotheses for phrases.</p>
-          </div><!-- .col-lg-8 -->
+          </div><!-- .col-lg-8 --
           <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="opt-box">
               <h6><strong>Would you like to help make this service better?</strong><br><br>
@@ -57,7 +57,7 @@
             </div>
           </div>
 
-        </div><!-- .col-lg-12 -->
+        </div><!-- .col-lg-12 --
 
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-12">
@@ -71,7 +71,7 @@
               </ul>
             </div>
 
-          </div><!-- .col-lg-6 -->
+          </div><!-- .col-lg-6 --
 
         </div><!-- row -->
 
@@ -86,44 +86,15 @@
         </div><!-- row -->
 
 
-        <div class="row">
-          <nav class="navbar navbar-inverse">
-          <ul class="navbar-text">
-            <li id="recordButton" class="button-row nav-inverse-color">
-            <img id="microphoneIcon" src="images/microphone.svg" class="icon">
-            <span class="nav-label">Record Audio</span>
-            </li>
-            <li class="file-upload button-row nav-inverse-color">
-            <div id="fileUploadTarget">
-              <img src="images/upload.svg" class="icon"></img>
-              <span class="nav-label">Select File</span>
-            </div>
-            </li>
-            <li class="play-sample-1 button-row nav-inverse-color">
-            <img src="images/play.svg" class="icon">
-            <span class="nav-label">Play Sample 1</span>
-            </li>
-            <li class="play-sample-2 button-row nav-inverse-color">
-            <img src="images/play.svg" class="icon">
-            <span class="nav-label">Play  Sample 2</span>
-            </li>
-           <!--  <form>
-            <li class="saveText button-row nav-inverse-color">
-            <input type="submit" name="save" value="saveText"/>
-            <span class="nav-label">Save Text</span>
-            </form>
-            </li> -->
-          </ul>
-
-          </nav>
-        </div>
-        <!-- Tab panes -->
+        
+        <!-- Tab panes --
         <div class="row" style="  margin: 0;">
           <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0;">
+            <!--
             <div class="well">
               <form autocomplete="off" class="form-horizontal">
                 <div role="tabpanel">
-                  <!-- Nav tabs -->
+                  <!-- Nav tabs --
                   <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#home2" aria-controls="home" role="tab" data-toggle="tab">Text</a></li>
                     <li role="presentation"><a href="#profile2" aria-controls="profile" role="tab" data-toggle="tab">JSON</a></li>
@@ -155,20 +126,20 @@
                               <textarea name="results" readonly id="resultsText"></textarea>
                               <input type="submit">
                             </form>
- -->                          </div>
+                           </div>
                           <div role="tabpanel" class="tab-pane" id="profile2">
                             <textarea readonly id="resultsJSON"></textarea>
                           </div>
                         </div>
-                      </div><!-- .col-lg-12 -->
+                      </div><!-- .col-lg-12 
                     </div>
                   </fieldset>
                 </div>
               </form>
             </div>
-          </div><!-- /.well -->
+          </div><!-- /.well --
         </div><!-- /.tabpanel -->
-
+        <!--
         <div class="row">
           <div class="col-md-12">
 
@@ -181,6 +152,7 @@
 
                 <!-- Table -->
                 <div class="table-scroll">
+                  <!--
                   <table id="metadataTable">
                     <thead>
                       <tr class="table-header-row">
@@ -192,10 +164,10 @@
                     </thead>
                     <tbody id="metadataTableBody">
                     </tbody>
-                  </table>
+                  </table>-->
                 </div>
 
-                <!-- END Table -->
+                <!-- END Table --
                 <div class="alt-hypothesis">
                   <h5>Alternate Hypotheses</h5><hr>
                   <div class="hypotheses">
@@ -206,23 +178,64 @@
             </div>
 
             <!-- Spacer-->
-            <!-- TODO: Move this to CSS-->
+            <!-- TODO: Move this to CSS--
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12">
                 <br><br>
               </div>
-            </div>
+            </div>-->
 
 
           </div><!-- /.col -->
         </div><!-- /.row -->
+        <div id="wrapper">
+          <div id="first"><img src="http://www.bugattiroseagency.com/wp-content/uploads/2015/06/Headshot-2-400x800.jpg"></div>
+          <div id="second"><img src="http://img05.deviantart.net/c245/i/2011/063/f/4/black_and_white_headshot_by_browneyesturnedblue-d3awj33.png"></div>
+          <div id="third"><img src="http://www.ddlegends.com/web/wp-content/uploads/2015/02/MG_9160-400x800.jpg"></div>
+          <div id="fourth"><img src="http://rocketboysolutions.com/images/portfolio/5.jpg"></div>
+          <div id="fifth"><img src="http://photos.modelmayhem.com/photos/130614/16/51bba5ca8c83d.jpg"></div>
+        </div>
 
           <form method="post" action="/" >
               <textarea name="results" readonly id="resultsText"></textarea>
               <input type="submit">
           </form>
 
+            <div class="row">
+            <nav class="navbar navbar-inverse">
+              <ul class="navbar-text">
+                <li id="recordButton" class="button-row nav-inverse-color">
+                <img id="microphoneIcon" src="images/microphone.svg" class="icon">
+                <span class="nav-label">Record Audio</span>
+                </li>
+                <li class="file-upload button-row nav-inverse-color">
+                <div id="fileUploadTarget">
+                  <img src="images/upload.svg" class="icon"></img>
+                  <span class="nav-label">Select File</span>
+                </div>
+                </li>
+                <!--
+                <li class="play-sample-1 button-row nav-inverse-color">
+                <img src="images/play.svg" class="icon">
+                <span class="nav-label">Play Sample 1</span>
+                </li>
+                <li class="play-sample-2 button-row nav-inverse-color">
+                <img src="images/play.svg" class="icon">
+                <span class="nav-label">Play  Sample 2</span>
+                </li>
+               <!--  <form>
+                <li class="saveText button-row nav-inverse-color">
+                <input type="submit" name="save" value="saveText"/>
+                <span class="nav-label">Save Text</span>
+                </form>
+                </li> -->
+              </ul>
+
+            </nav>
+        </div>
       </div><!-- /.container -->
+
+
 
       <!-- for file upload dialog in toolbar -->
       <input style="display:none" type="file" id="fileUploadDialog">
