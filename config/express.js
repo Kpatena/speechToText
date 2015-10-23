@@ -53,8 +53,47 @@ module.exports = function (app) {
     res.render('index', { ct: req.csrfToken() });
   });
 
-  app.get('/editor', csrfProtection, function(req, res) {
-    res.render('editor', { ct: req.csrfToken() });
+  app.get('/editor', function(req, res) {
+    res.render('editor');
+  });
+
+  app.get('/list', function(req, res) {
+
+    //lets require/import the mongodb native drivers.
+    var mongodb = require('mongodb');
+
+    //We need to work with "MongoClient" interface in order to connect to a mongodb server.
+    var MongoClient = mongodb.MongoClient;
+
+    // Connection URL. This is where your mongodb server is running.
+    var url = 'mongodb://kpatena:kyle081186@ds037283.mongolab.com:37283/speechtotext';
+
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        //HURRAY!! We are connected. :)
+        console.log('Connection established to', url);
+
+        // Get the documents collection
+        var collection = db.collection('conversations');
+
+        // Insert some users
+        collection.find({user: 'Wood Jablome'}).toArray(function (err, result) {
+          if (err) {
+            console.log(err);
+          } else if (result.length) {
+            console.log('Found:', result);
+            res.render('list', { data : result });
+          } else {
+            console.log('No document(s) found with defined "find" criteria!');
+          }
+          //Close connection
+          db.close();
+        });
+      }
+    });
   });
   // apply to all requests that begin with /api/
   // csfr token
@@ -63,7 +102,7 @@ module.exports = function (app) {
   app.use('/static', express.static(path.join(process.cwd(), 'bower_components')));
 
 
-  //using conversation page as the main page 
+  //when the user presses to stop their podcast 
   app.post('/', function(req, res) {
 
     console.log(req.body);
@@ -92,7 +131,7 @@ module.exports = function (app) {
         // var user2 = {name: 'modulus user', age: 22, roles: ['user']};
         // var user3 = {name: 'modulus super admin', age: 92, roles: ['super-admin', 'admin', 'moderator', 'user']};
 
-        var conversation = {post: req.body};
+        var conversation = {user: "Wood Jablome", title: "Sample Title", post: req.body};
         
         // Insert some users
         collection.insert([conversation], function (err, result) {
