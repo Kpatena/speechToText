@@ -107,7 +107,7 @@ module.exports = function (app) {
 
     console.log(req.body);
 
-     var mongodb      = require ('mongodb');
+     var mongodb    = require ('mongodb');
 
     //We need to work with "MongoClient" interface in order to connect to a mongodb server.
     var MongoClient = mongodb.MongoClient;
@@ -145,6 +145,7 @@ module.exports = function (app) {
         });
       }
     });
-  res.send('sentToDatabase');
+
+  res.redirect(200,'/');
 });
 };
