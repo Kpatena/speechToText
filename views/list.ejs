@@ -4,11 +4,19 @@
      <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <script src="/static/webcomponentsjs/webcomponents-lite.min.js"></script>
+<<<<<<< HEAD
     <title>Broadcasts</title>
    <link rel="import" href="/static/paper-button/paper-button.html">
    <link rel="import" href="/static/paper-card/paper-card.html">
 	<link rel="import" href="/static/paper-header-panel/paper-header-panel.html">
 	<link rel="import" href="/static/paper-toolbar/paper-toolbar.html">
+=======
+    <title>Authenticate</title>
+    <link rel="import" href="/static/paper-button/paper-button.html">
+    <link rel="import" href="/static/paper-card/paper-card.html">
+	  <link rel="import" href="/static/paper-header-panel/paper-header-panel.html">
+	  <link rel="import" href="/static/paper-toolbar/paper-toolbar.html">
+>>>>>>> 3b17dafd6fd445850a0e9610b977e94669054868
     <style>
       body {
         font-family: 'Helvetica Neue';
@@ -31,6 +39,11 @@
         width: 100%;
         margin-bottom: 1em;
       }
+      .delete{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }
 
     </style>
   </head>
@@ -45,10 +58,11 @@
         <paper-card class='fancy'>
             <div class="card-content">
               <div class="title">
-              <div class="medium"><a href="#">Title: <%= data[i].title %></a></div>
+                <div class="medium"><a href="#">Title: <%= data[i].title %></a></div>
+              </div>
               <div class="medium"><a href="#">User: <%= data[i].user %></a></div>
               <div class="small"><%= data[i].post.results %></div>
-              </div>
+              <div class="delete"><button>Delete</button></div>
             </div>
         </paper-card><br/>
 <% } %>
