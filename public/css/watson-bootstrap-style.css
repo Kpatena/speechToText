@@ -2449,6 +2449,14 @@ fieldset[disabled] .btn-link:focus {
   color: #999999;
   text-decoration: none;
 }
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
 .btn-lg,
 .btn-group-lg > .btn {
   padding: 10px 16px;

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="ct" content="<%= ct %>">
-    <title>Record</title>
+    <title>Speech to Text</title>
     <link href="css/watson-bootstrap-style.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
   </head>
@@ -185,7 +185,6 @@
               </div>
             </div>-->
 
-
           </div><!-- /.col -->
         </div><!-- /.row -->
         <div id="wrapper">
@@ -198,49 +197,42 @@
 
           <form method="post" action="/" >
               <textarea name="results" readonly id="resultsText"></textarea>
-              <input type="image" src="images/recordstop.jpg" alt="submit">
+              <input id="sendBtn" type="image" src="images/recordstop.jpg" alt="submit">
           </form>
 
-            <div class="row">
-            <nav class="navbar navbar-inverse">
+      
+        <p><a href="/list">Back to Past Broadcasts</a></p>
+        <p><a href="/editor">Go to Editor</a></p>
+ 
+
+         <div id="foot" class="row">
+            <nav  class="navbar navbar-inverse">
               <ul class="navbar-text">
-                <li id="recordButton" class="button-row nav-inverse-color">
-                <img id="microphoneIcon" src="images/microphone.svg" class="icon">
-                <span class="nav-label">Record Audio</span>
+                <li id="recordButton" class="btn-xlarge">
+                <img id="microphoneIcon" src="images/play.svg" class="icon">
                 </li>
-                <li class="file-upload button-row nav-inverse-color">
-                <div id="fileUploadTarget">
-                  <img src="images/upload.svg" class="icon"></img>
-                  <span class="nav-label">Select File</span>
-                </div>
-                </li>
-                <!--
-                <li class="play-sample-1 button-row nav-inverse-color">
+                
+               <!--  <li class="play-sample-1 button-row nav-inverse-color">
                 <img src="images/play.svg" class="icon">
                 <span class="nav-label">Play Sample 1</span>
                 </li>
                 <li class="play-sample-2 button-row nav-inverse-color">
                 <img src="images/play.svg" class="icon">
                 <span class="nav-label">Play  Sample 2</span>
-                </li>
-               <!--  <form>
+                </li> -->
+            <!--     <form>
                 <li class="saveText button-row nav-inverse-color">
                 <input type="submit" name="save" value="saveText"/>
-                <span class="nav-label">Save Text</span>
-                </form>
-                </li> -->
+                <span class="nav-label">Save Text</span> -->
+               <!--  </form> -->
+                <!-- </li>  -->
               </ul>
-
             </nav>
         </div>
-      </div><!-- /.container -->
-
-      <p><a href="/list">Back to Past Broadcasts</a></p>
-      <p><a href="/editor">Go to Editor</a></p>
+      </div>
 
 
-
-      <!-- for file upload dialog in toolbar -->
+      <!-- for file upload dialog in toolbar
       <input style="display:none" type="file" id="fileUploadDialog">
 
       <!-- Place js files at the end of the document, with fallbacks for CDNs -->
