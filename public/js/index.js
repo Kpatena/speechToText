@@ -33,7 +33,7 @@
             this.outputChannels = options.outputChannels || 1;
             this.recording = false;
             this.requestedAccess = false;
-            this.sampleRate = 16e3;
+            this.sampleRate = 8e3;
             this.bufferUnusedSamples = new Float32Array(0);
             if (!navigator.getUserMedia) {
                 navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia

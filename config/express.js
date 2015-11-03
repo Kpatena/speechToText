@@ -23,7 +23,10 @@ var express    = require('express'),
   bodyParser   = require('body-parser'),
   csrf         = require('csurf'),
   cookieParser = require('cookie-parser');
+
 var path = require('path');
+var mongodb = require('mongodb');
+var ObjectID = require('mongodb').ObjectID;
 
 module.exports = function (app) {
   app.set('view engine', 'ejs');
@@ -53,14 +56,44 @@ module.exports = function (app) {
     res.render('index', { ct: req.csrfToken() });
   });
 
-  app.get('/editor', function(req, res) {
-    res.render('editor');
+  app.get('/editor/:id', function(req, res) {
+    var uid = req.params.id.toString();
+    //We need to work with "MongoClient" interface in order to connect to a mongodb server.
+    var MongoClient = mongodb.MongoClient;
+
+    // Connection URL. This is where your mongodb server is running.
+    var url = 'mongodb://kpatena:kyle081186@ds037283.mongolab.com:37283/speechtotext';
+
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        //HURRAY!! We are connected. :)
+        console.log('Connection established to', url);
+
+        // Get the documents collection
+        var collection = db.collection('conversations');
+
+        // Insert some users
+        collection.find({"_id": ObjectID(uid)}).toArray(function (err, result) {
+          if (err) {
+            console.log(err);
+          } else if (result.length) {
+            console.log('Found:', result);
+            res.render('editor', { data : result });
+          } else {
+            console.log('No document(s) found with defined "find" criteria!');
+            res.render('editor', {data : null});
+          }
+          //Close connection
+          db.close();
+        });
+      }
+    });
   });
 
   app.get('/list', function(req, res) {
-
-    //lets require/import the mongodb native drivers.
-    var mongodb = require('mongodb');
 
     //We need to work with "MongoClient" interface in order to connect to a mongodb server.
     var MongoClient = mongodb.MongoClient;
@@ -88,6 +121,7 @@ module.exports = function (app) {
             res.render('list', { data : result });
           } else {
             console.log('No document(s) found with defined "find" criteria!');
+            res.render('list', {data : null});
           }
           //Close connection
           db.close();
@@ -95,6 +129,7 @@ module.exports = function (app) {
       }
     });
   });
+
   // apply to all requests that begin with /api/
   // csfr token
   app.use('/api/', csrfProtection);
@@ -102,12 +137,10 @@ module.exports = function (app) {
   app.use('/static', express.static(path.join(process.cwd(), 'bower_components')));
 
 
-  //when the user presses to stop their podcast 
+  //when the user presses to stop their podcast and sends to database
   app.post('/', function(req, res) {
 
     console.log(req.body);
-
-     var mongodb    = require ('mongodb');
 
     //We need to work with "MongoClient" interface in order to connect to a mongodb server.
     var MongoClient = mongodb.MongoClient;
@@ -146,6 +179,76 @@ module.exports = function (app) {
       }
     });
 
-  res.redirect(200,'/');
+  res.redirect('/');
 });
+
+  app.get ('/delete/:id', function (req, res) {
+    var uid = req.params.id.toString();
+      //We need to work with "MongoClient" interface in order to connect to a mongodb server.
+    var MongoClient = mongodb.MongoClient;
+
+    console.log(uid);
+    // Connection URL. This is where your mongodb server is running.
+   var url = 'mongodb://kpatena:kyle081186@ds037283.mongolab.com:37283/speechtotext';
+
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        console.log('Connection established to', url);
+
+        var collection = db.collection('conversations');
+        
+        collection.remove({"_id": ObjectID(uid)}, function (err, result) { 
+          
+            if(err) {
+              console.log(err);
+            } else {
+              console.log("success");
+            }
+
+            db.close();
+        });
+
+      }
+    });
+    
+    res.redirect('/list');
+  });
+
+  app.post ('/update/:id', function(req, res) {
+    var uid = req.params.id.toString();
+    //We need to work with "MongoClient" interface in order to connect to a mongodb server.
+    var MongoClient = mongodb.MongoClient;
+
+    // Connection URL. This is where your mongodb server is running.
+    var url = 'mongodb://kpatena:kyle081186@ds037283.mongolab.com:37283/speechtotext';
+
+    // Use connect method to connect to the Server
+    MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        //HURRAY!! We are connected. :)
+        console.log('Connection established to', url);
+
+        // Get the documents collection
+        var collection = db.collection('conversations');
+
+        // Insert some users
+        collection.update({_id: ObjectID(uid)}, {$set: {post:req.body}});(function (err, result) {
+            if(err) {
+              console.log(err);
+            } else {
+              console.log("success");
+            }
+
+            db.close();
+        });
+      }
+    });
+
+    res.redirect('/list');
+  });
 };

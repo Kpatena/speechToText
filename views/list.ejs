@@ -45,18 +45,20 @@
    <h1>Broadcasts</h1>
  </paper-toolbar>
   </paper-header-panel>
-<% for(var i=0; i<data.length; i++) {%>
-   <!--<li><%= data[i].post.results %> : <%= data[i].post.results %></li>-->
-        <paper-card class='fancy'>
-            <div class="card-content">
-              <div class="title">
-                <div class="medium"><a href="#">Title: <%= data[i].title %></a></div>
+<%if (data != null) { %>
+  <% for(var i=0; i<data.length; i++) { %>
+     <!--<li><%= data[i].post.results %> : <%= data[i].post.results %></li>-->
+          <paper-card class='fancy'>
+              <div class="card-content">
+                <div class="title">
+                  <div class="medium"><a href="/editor/<%= data[i]._id %>">Title: <%= data[i].title %></a></div>
+                </div>
+                <div class="medium"><a href="#">User: <%= data[i].user %> ID : <%= data[i]._id %> </a></div>
+                <div class="small"><%= data[i].post.results %></div>
+                <div class="delete"><a href='/delete/<%= data[i]._id %>'><button>Delete</button></a></div>
               </div>
-              <div class="medium"><a href="#">User: <%= data[i].user %></a></div>
-              <div class="small"><%= data[i].post.results %></div>
-              <div class="delete"><button>Delete</button></div>
-            </div>
-        </paper-card><br/>
+          </paper-card><br/>
+  <% } %>
 <% } %>
 
 <!--     <form method="post" action="/">

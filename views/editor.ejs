@@ -30,14 +30,18 @@
     </style>
   </head>
   <body>
-	<paper-header-panel>
-	<paper-toolbar>
-
-	</paper-toolbar>
-	
-	</paper-header-panel>
-    <paper-button label="Authenticate" class="colored">Hello</paper-button>
-
+  <%if (data != null) { %>
+  	<paper-header-panel>
+    	<paper-toolbar>
+        <h1><%= data[0].title %></h1>
+    	</paper-toolbar>
+  	</paper-header-panel>
+    <form method="post" action="/update/<%= data[0]._id %>" >
+        <textarea name="results"><%= data[0].post.results %></textarea>
+        <input type="submit" value="Update">
+    </form>
+                  
+  <% } %>
 <!--     <form method="post" action="/">
   <input type="test" name="field1">
   <input type="test" name="field2">
