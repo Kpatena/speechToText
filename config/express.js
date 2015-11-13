@@ -23,14 +23,40 @@ var express    = require('express'),
   bodyParser   = require('body-parser'),
   csrf         = require('csurf'),
   cookieParser = require('cookie-parser');
+var BinaryServer = require('binaryjs').BinaryServer;
+var fs = require('fs');
+var wav = require('wav');
+var num = Math.floor((Math.random() * 10000) + 1);
+var outFile = 'audioClips/demo' + num + '.wav';
 
 var path = require('path');
 var mongodb = require('mongodb');
 var ObjectID = require('mongodb').ObjectID;
+var BinaryServer = BinaryServer({port: 9001});
 
 module.exports = function (app) {
   app.set('view engine', 'ejs');
   app.enable('trust proxy');
+
+  BinaryServer.on('connection', function(client) {
+      console.log('new connection');
+
+      var fileWriter = new wav.FileWriter(outFile, {
+        channels: 1,
+        sampleRate: 48000,
+        bitDepth: 16
+      });
+
+      client.on('stream', function(stream, meta) {
+        console.log('new stream');
+        stream.pipe(fileWriter);
+
+        stream.on('end', function() {
+          fileWriter.end();
+          console.log('wrote to file ' + outFile);
+        });
+      });
+    });
 
   // use only https
   var env = process.env.NODE_ENV || 'development';
@@ -45,6 +71,8 @@ module.exports = function (app) {
   // Setup static public directory
   app.use(express.static(__dirname + '/../public'));
   app.use(favicon(__dirname + '/../public/images/favicon.ico'));
+  app.use('/static', express.static(path.join(process.cwd(), 'bower_components')));
+  app.use('/audioClips', express.static(path.join(process.cwd(), 'audioClips')));
 
   // cookies
   var secret = Math.random().toString(36).substring(7);
@@ -133,14 +161,11 @@ module.exports = function (app) {
   // apply to all requests that begin with /api/
   // csfr token
   app.use('/api/', csrfProtection);
-  
-  app.use('/static', express.static(path.join(process.cwd(), 'bower_components')));
 
 
   //when the user presses to stop their podcast and sends to database
   app.post('/', function(req, res) {
 
-    console.log(req.body);
 
     //We need to work with "MongoClient" interface in order to connect to a mongodb server.
     var MongoClient = mongodb.MongoClient;
@@ -159,12 +184,7 @@ module.exports = function (app) {
         // Get the documents collection
         var collection = db.collection('conversations');
 
-        //Create some users
-        // var user1 = {name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']};
-        // var user2 = {name: 'modulus user', age: 22, roles: ['user']};
-        // var user3 = {name: 'modulus super admin', age: 92, roles: ['super-admin', 'admin', 'moderator', 'user']};
-
-        var conversation = {user: "Wood Jablome", title: "Sample Title", post: req.body};
+        var conversation = {user: "Wood Jablome", title: "Sample Title", post: req.body, audioClip: outFile};
         
         // Insert some users
         collection.insert([conversation], function (err, result) {
@@ -179,7 +199,7 @@ module.exports = function (app) {
       }
     });
 
-  res.redirect('/');
+  res.redirect('/list');
 });
 
   app.get ('/delete/:id', function (req, res) {

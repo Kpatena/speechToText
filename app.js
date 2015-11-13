@@ -21,7 +21,6 @@ var express      = require('express'),
     vcapServices = require('vcap_services'),
     extend       = require('util')._extend,
     watson       = require('watson-developer-cloud');
-  
 
 // Bootstrap application settings
 require('./config/express')(app);
@@ -49,6 +48,6 @@ app.post('/api/token', function(req, res, next) {
 // error-handler settings
 require('./config/error-handler')(app);
 
-var port = process.env.VCAP_APP_PORT || 3000;
+var port = process.env.VCAP_APP_PORT || 3700;
 app.listen(port);
 console.log('listening at:', port);

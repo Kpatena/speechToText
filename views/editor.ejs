@@ -36,11 +36,14 @@
         <h1><%= data[0].title %></h1>
     	</paper-toolbar>
   	</paper-header-panel>
+    <audio controls>
+      <source src="/<%= data[0].audioClip%>" type="audio/wav">
+    </audio>
     <form method="post" action="/update/<%= data[0]._id %>" >
         <textarea name="results"><%= data[0].post.results %></textarea>
         <input type="submit" value="Update">
     </form>
-                  
+      
   <% } %>
 <!--     <form method="post" action="/">
   <input type="test" name="field1">
