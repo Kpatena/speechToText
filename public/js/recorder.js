@@ -32,7 +32,7 @@
       // the sample rate is in context.sampleRate
       audioInput = context.createMediaStreamSource(e);
 
-      var bufferSize = 2048;
+      var bufferSize = 8192;
       recorder = context.createScriptProcessor(bufferSize, 1, 1);
 
       recorder.onaudioprocess = function(e){

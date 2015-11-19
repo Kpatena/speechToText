@@ -26,7 +26,7 @@ var express    = require('express'),
 var BinaryServer = require('binaryjs').BinaryServer;
 var fs = require('fs');
 var wav = require('wav');
-var num = Math.floor((Math.random() * 10000) + 1);
+var num = Math.floor((Math.random() * 10000000000) + 1);
 var outFile = 'audioClips/demo' + num + '.wav';
 
 var path = require('path');

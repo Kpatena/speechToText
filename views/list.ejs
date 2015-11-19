@@ -1,72 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-     <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <script src="/static/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <title>Broadcasts</title>
-   <link rel="import" href="/static/paper-button/paper-button.html">
-   <link rel="import" href="/static/paper-card/paper-card.html">
-	<link rel="import" href="/static/paper-header-panel/paper-header-panel.html">
-	<link rel="import" href="/static/paper-toolbar/paper-toolbar.html">
-    <style>
-      body {
-        font-family: 'Helvetica Neue';
-        margin: 0;
-        padding: 24px;
-        user-select: none;
-        transform: translateZ(0);
-      }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Podcasts</title>
+    <link href="css/watson-bootstrap-style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
-      paper-button {
-        margin: 1em;
-        width: 10em;
-      }
+    <script src="/static/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/static/paper-scroll-header-panel/paper-scroll-header-panel.html">
+    <link rel="import" href="/static/paper-toolbar/paper-toolbar.html">
+    <link rel="import" href="/static/iron-icons/iron-icons.html">
+    <link rel="import" href="/static/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="/static/paper-drawer-panel/paper-drawer-panel.html">
+    <link rel="import" href="/static/paper-card/paper-card.html">
+    <link rel="import" href="/static/paper-item/paper-item.html">
+    <link rel="import" href="/static/paper-menu/paper-menu.html">
 
-      paper-button.colored {
-        color: #4285f4;
-        fill: #4285f4;
+    <link rel="stylesheet" href="/static/paper-styles/demo.css">
+
+    <style is="custom-style">
+       #cards {
+        max-height: 4em;
       }
-      paper-card{
+      paper-card {
+        @apply(--layout-vertical);
         width: 100%;
-        margin-bottom: 1em;
+        height: 100%;
+        margin-bottom: 16px;
       }
-      .delete{
+      paper-scroll-header-panel {
         position: absolute;
-        right: 5px;
-        top: 5px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #414B4B;
       }
-
+      paper-toolbar {
+        background-color: var(--google-red-500, #4285f4);
+      }
+      paper-toolbar .title {
+        margin: 0 8px;
+      }
+      paper-scroll-header-panel .content {
+        padding: 8px;
+      }
     </style>
   </head>
-  <body>
-    <paper-header-panel>
-    <paper-toolbar>
-   <h1>Broadcasts</h1>
- </paper-toolbar>
-  </paper-header-panel>
-<%if (data != null) { %>
-  <% for(var i=0; i<data.length; i++) { %>
-     <!--<li><%= data[i].post.results %> : <%= data[i].post.results %></li>-->
-          <paper-card class='fancy'>
-              <div class="card-content">
-                <div class="title">
-                  <div class="medium"><a href="/editor/<%= data[i]._id %>">Title: <%= data[i].title %></a></div>
-                </div>
-                <div class="medium"><a href="#">User: <%= data[i].user %> ID : <%= data[i]._id %> </a></div>
-                <div class="small"><%= data[i].post.results %></div>
-                <div class="delete"><a href='/delete/<%= data[i]._id %>'><button>Delete</button></a></div>
-              </div>
-          </paper-card><br/>
-  <% } %>
-<% } %>
+  <body unresolved>
+   <paper-drawer-panel>
+    <paper-header-panel drawer>
+    <paper-toolbar><div class="flex title">Menu</div></paper-toolbar>
+      <div class="horizontal-section">
+        <paper-menu>
+          <a href="http://www.voxiter.com"><paper-item><paper-icon-button icon="home"></paper-icon-button>Home</paper-item></a>
+          <a href="/"><paper-item><paper-icon-button icon="add-circle"></paper-icon-button>Add a Podcast</paper-item></a>
+        </paper-menu>
+      </div>
+    </paper-header-panel>
+     
 
-<!--     <form method="post" action="/">
-  <input type="test" name="field1">
-  <input type="test" name="field2">
-  <input type="submit">
-</form> -->
-<a href="/"><h1>Add A Podcast</h1></a>
+      <paper-scroll-header-panel main>
+
+      <paper-toolbar>
+      
+        <div class="flex title">Voxiter</div>
+
+      </paper-toolbar>
+
+      <div class="content">
+        <div id="cards">
+          <%if (data != null) { %>
+            <% for(var i=0; i<data.length; i++) { %>
+               <!--<li><%= data[i].post.results %> : <%= data[i].post.results %></li>-->
+                <paper-card class='fancy'>
+                    <div class="card-content">
+                      <div class="title">
+                        <div class="medium"><a href="/editor/<%= data[i]._id %>"><%= data[i].title %></a></div>
+                      </div>
+                      <div class="small"><%= data[i].post.results %></div>
+                      <div class="delete"><a href='/delete/<%= data[i]._id %>'><button>Delete</button></a></div>
+                    </div>
+                </paper-card><br/>
+            <% } %>
+          <% } %>
+        </div>
+
+    </paper-scroll-header-panel>
+
+    </paper-drawer-panel>
+
   </body>
+
+
 </html>
- 
+
+
