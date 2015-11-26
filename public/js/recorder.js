@@ -42,18 +42,18 @@
         window.Stream.write(convertoFloat32ToInt16(left));
       }
 
-      audioInput.connect(recorder)
+      audioInput.connect(recorder);
       recorder.connect(context.destination); 
     }
 
     function convertoFloat32ToInt16(buffer) {
       var l = buffer.length;
-      var buf = new Int16Array(l)
+      var buf = new Int16Array(l);
 
       while (l--) {
         buf[l] = buffer[l]*0xFFFF;    //convert to 16 bit
       }
-      return buf.buffer
+      return buf.buffer;
     }
   });
 })(this);
