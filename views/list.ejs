@@ -58,6 +58,7 @@
         <paper-menu>
           <a href="http://www.voxiter.com"><paper-item><paper-icon-button icon="home"></paper-icon-button>Home</paper-item></a>
           <a href="/"><paper-item><paper-icon-button icon="add-circle"></paper-icon-button>Add a Podcast</paper-item></a>
+          <a href="/list" class="focus"><paper-item><paper-icon-button icon="theaters"></paper-icon-button>Past Podcasts</paper-item></a>
         </paper-menu>
       </div>
     </paper-header-panel>
@@ -81,7 +82,7 @@
                         <div class="medium"><a href="/editor/<%= data[i]._id %>"><%= data[i].title %></a></div>
                       </div>
                       <div class="small"><%= data[i].post.results %></div>
-                      <div class="delete"><a href='/delete/<%= data[i]._id %>'><button>Delete</button></a></div>
+                      <div class="delete"><a href='/delete/<%= data[i]._id %>'><button id="delBtn">Delete</button></a></div>
                     </div>
                 </paper-card><br/>
             <% } %>

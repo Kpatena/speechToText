@@ -23,10 +23,22 @@
 
     <link rel="stylesheet" href="/static/paper-styles/demo.css">
 
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+    </script>
+
     <style is="custom-style">
       a {
         text-decoration: none;
+        color:#000040;
       }
+
+      a:hover {
+        color:red;
+      }
+
       paper-card {
         @apply(--layout-vertical);
         width: 100%;
@@ -60,10 +72,13 @@
         padding-right: 100px;
       }
 
+      .audio {
+        position: relative;
+        left:275px;
+      }
       #updateBtn {
-        position: absolute;
-        left: 350px;
-        height: 30px;
+        position: relative;
+        left: 400px;
         background: #25A6E1;
         background: -moz-linear-gradient(top,#25A6E1 0%,#188BC0 100%);
         background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#25A6E1),color-stop(100%,#188BC0));
@@ -72,7 +87,7 @@
         background: -ms-linear-gradient(top,#25A6E1 0%,#188BC0 100%);
         background: linear-gradient(top,#25A6E1 0%,#188BC0 100%);
         filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#25A6E1',endColorstr='#188BC0',GradientType=0);
-        padding:8px 13px;
+        padding: 3px 5px;
         color:#fff;
         font-family:'Helvetica Neue',sans-serif;
         font-size:17px;
@@ -101,7 +116,7 @@
 
       <paper-toolbar>
 
-        <paper-icon-button icon="arrow-back"></paper-icon-button>
+        <paper-icon-button icon="arrow-back" onclick="goBack()"></paper-icon-button>
         <div class="flex title">Voxiter</div>
 
       </paper-toolbar>
@@ -116,7 +131,7 @@
             <paper-card class="fancy">
               <div class="card-content">
                 <div class="small">
-                  <audio controls>
+                  <audio controls class="audio">
                     <source src="/<%= data[0].audioClip%>" type="audio/wav">
                   </audio>
                   <form method="post" action="/update/<%= data[0]._id %>" >
