@@ -43,7 +43,7 @@ module.exports = function (app) {
 
       var fileWriter = new wav.FileWriter(outFile, {
         channels: 1,
-        sampleRate: 48000,
+        sampleRate: 46500,
         bitDepth: 16
       });
 
